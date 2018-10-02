@@ -159,11 +159,11 @@
             </dependency>
 
             <!-- Add H2 dependency for embedded testing database -->
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${version.h2db}</version>
-            </dependency>
+           <dependency>
+  				<groupId>com.h2database</groupId>
+ 				 <artifactId>h2</artifactId>
+  				<version>1.4.197</version>
+				</dependency>
 
             <!-- Add JSON dependency, specified in jboss-deployment-structure.xml -->
             <dependency>

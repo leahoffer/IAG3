@@ -1,10 +1,26 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="ClientePedido")
 public class ClientePedido {
 
+	
+	@Id
+	@Column(name="dni")
 	private String dni;
+	
+	@Column(name="nombre")
 	private String nombre;
+	
+	@Column(name="direccion")
 	private String direccion;
+	
+	@Column(name="telefono")
 	private String telefono;
 	
 	public ClientePedido(String dni, String nombre, String direccion, String telefono) {
@@ -15,6 +31,10 @@ public class ClientePedido {
 		this.telefono = telefono;
 	}
 	
+	public ClientePedido() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getDni() {
 		return dni;
 	}
