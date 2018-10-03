@@ -25,14 +25,17 @@ public class SistemaLogistica {
 	}
 	
 	
-	public void agregarCliente(String dni, String nombre, String direccion, String telefono) {
+	public void agregarCliente(String dni, String nombre, String contrasenia, String direccion, String telefono) {
 		
 		try {
 		ClientePedido cp = new ClientePedido();
-		cp.setDireccion(direccion);
+		
 		cp.setDni(dni);
 		cp.setNombre(nombre);
+		cp.setContrasenia(contrasenia);
+		cp.setDireccion(direccion);
 		cp.setTelefono(telefono);
+		cp.setActivo(true);
 		ClienteDAO.getInstance().saveOrUpdate(cp);
 		
 		}catch (Exception e) {
@@ -55,7 +58,13 @@ public void agregarProducto(String nombre) {
 	}
 	
 	
-	
+	public String validarLogin(String dni, String contrasenia) {
+		ClientePedido cliente = ClienteDAO.getInstance().findClienteByDNI(dni);
+		if(cliente != null && cliente.validarLogin(contrasenia) && cliente.isActivo()==true)
+			return cliente.getClienteId();
+		else
+			return null;
+}
 	
 	
 }

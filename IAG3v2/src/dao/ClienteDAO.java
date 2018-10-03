@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import hibernate.HibernateUtil;
 import model.ClientePedido;
@@ -34,8 +35,27 @@ public class ClienteDAO {
 		session.getTransaction().commit();
 		session.close();
 	}
-	
 
+
+	public ClientePedido findClienteByDNI(String string) {
+		Session session = sf.openSession();
+		
+		
+		Query<ClientePedido> query = session.createQuery("from ClientePedido p where p.dni = :dni", ClientePedido.class);
+		query.setParameter("dni", string);
+		ClientePedido clientep = query.uniqueResult();
+		
+		if(clientep !=null) {
+			return clientep;
+		}
+		else {
+			session.close();
+			return null;
+		}
+		
+	}
+	
+	
 	
 
 }
