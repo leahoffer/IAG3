@@ -2,6 +2,8 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +13,7 @@ public class Producto {
 	
 	@Id
 	@Column(name="id_producto")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name="nombre")
@@ -18,9 +21,9 @@ public class Producto {
 	
 	
 	
-	public Producto(int id, String nombre) {
+	public Producto(String nombre) {
 		super();
-		this.id = id;
+		
 		this.nombre = nombre;
 	}
 	public Producto() {

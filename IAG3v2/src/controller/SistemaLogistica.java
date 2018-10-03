@@ -41,11 +41,10 @@ public class SistemaLogistica {
 	}
 	
 	
-public void agregarProducto(int id, String nombre) {
+public void agregarProducto(String nombre) {
 		
 		try {
 		Producto p = new Producto();
-		p.setId(id);
 		p.setNombre(nombre);
 		
 		ProductoDAO.getInstance().saveOrUpdate(p);

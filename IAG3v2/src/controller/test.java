@@ -14,9 +14,9 @@ public class test {
 		
 		ClientePedido cp = new ClientePedido("123", "fer", "asd", "41234");
 		
-		sl.agregarCliente("5", "fer", "asd", "41234");
+		sl.agregarCliente("1", "fer", "asd", "41234");
 		
-		sl.agregarProducto(7, "prueba4");
+		sl.agregarProducto("prueba");
 	
 		
 		

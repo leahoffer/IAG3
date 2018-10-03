@@ -1,13 +1,29 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="UsuariosLogistica")
 public class UsuarioLogistica {
 
+	@Id
+	@Column(name="usuario")
 	private String usuario;
+	
+	@Column(name="password")
 	private String password;
+	
+	@Column(name="nombre")
 	private String nombre;
+	
+	
+	
+	
 	public UsuarioLogistica() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public UsuarioLogistica(String usuario, String password, String nombre) {
 		super();

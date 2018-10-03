@@ -1,6 +1,5 @@
 package hibernate;
 
-import org.h2.tools.Console;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.*;
 
@@ -8,6 +7,8 @@ import org.hibernate.cfg.*;
 
 import model.ClientePedido;
 import model.Producto;
+import model.Repartidor;
+import model.UsuarioLogistica;
 
 
 
@@ -20,6 +21,9 @@ public class HibernateUtil {
 			
 			config.addAnnotatedClass(ClientePedido.class);
 			config.addAnnotatedClass(Producto.class);
+			config.addAnnotatedClass(Repartidor.class);
+			config.addAnnotatedClass(UsuarioLogistica.class);
+
 			
 			
 			//new Console().runTool(); Esto solo sirve para mostrar o abrir el browser de entidades
