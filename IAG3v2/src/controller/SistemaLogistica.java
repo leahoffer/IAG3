@@ -3,7 +3,9 @@ package controller;
 import org.hibernate.SessionFactory;
 
 import dao.ClienteDAO;
+import dao.ProductoDAO;
 import model.ClientePedido;
+import model.Producto;
 
 public class SistemaLogistica {
 	
@@ -26,8 +28,28 @@ public class SistemaLogistica {
 	public void agregarCliente(String dni, String nombre, String direccion, String telefono) {
 		
 		try {
-		ClientePedido cp = new ClientePedido(dni, nombre, direccion, telefono);
+		ClientePedido cp = new ClientePedido();
+		cp.setDireccion(direccion);
+		cp.setDni(dni);
+		cp.setNombre(nombre);
+		cp.setTelefono(telefono);
 		ClienteDAO.getInstance().saveOrUpdate(cp);
+		
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+public void agregarProducto(int id, String nombre) {
+		
+		try {
+		Producto p = new Producto();
+		p.setId(id);
+		p.setNombre(nombre);
+		
+		ProductoDAO.getInstance().saveOrUpdate(p);
+		
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

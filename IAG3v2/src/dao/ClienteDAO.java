@@ -1,5 +1,7 @@
 package dao;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -23,11 +25,14 @@ public class ClienteDAO {
 		return instance;
 	}
 	
+	
+	@Transactional
 	public void saveOrUpdate (ClientePedido cp) {
 		Session session = sf.openSession();
 		session.beginTransaction();
 		session.saveOrUpdate(cp);
-		
+		session.getTransaction().commit();
+		session.close();
 	}
 	
 

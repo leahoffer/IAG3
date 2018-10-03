@@ -1,6 +1,5 @@
 package controller;
 
-import dao.ClienteDAO;
 import model.ClientePedido;
 
 public class test {
@@ -10,11 +9,15 @@ public class test {
 		
 		System.out.println("hola mundo");
 		
-		@SuppressWarnings("unused")
+		
 		SistemaLogistica sl = new SistemaLogistica();
 		
 		ClientePedido cp = new ClientePedido("123", "fer", "asd", "41234");
-		ClienteDAO.getInstance().saveOrUpdate(cp);
+		
+		sl.agregarCliente("5", "fer", "asd", "41234");
+		
+		sl.agregarProducto(7, "prueba4");
+	
 		
 		
 
