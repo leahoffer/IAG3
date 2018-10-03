@@ -23,15 +23,17 @@ public class Repartidor {
 	private int id;
 	private String nombre;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, optional=true)
 	@JoinColumn(name="id_camioneta")
 	private Camioneta camioneta;
 	
 	
-	public Repartidor(int id, String nombre) {
+	public Repartidor(String nombre) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
+	}
+	public Repartidor() {
+		// TODO Auto-generated constructor stub
 	}
 	public int getId() {
 		return id;
@@ -45,6 +47,14 @@ public class Repartidor {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public Camioneta getCamioneta() {
+		return camioneta;
+	}
+	public void setCamioneta(Camioneta camioneta) {
+		this.camioneta = camioneta;
+	}
+	
+	
 	
 	
 }

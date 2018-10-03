@@ -7,43 +7,44 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import hibernate.HibernateUtil;
-import model.ClientePedido;
+import model.Camioneta;
 import model.Repartidor;
 
-public class RepartidorDAO {
+public class CamionetaDAO {
 	
 	
-	private static RepartidorDAO instance = null;
+	private static CamionetaDAO instance = null;
 	private static SessionFactory sf = null;
 	
 	
-	private RepartidorDAO() {
+	private CamionetaDAO() {
 		sf = HibernateUtil.getSessionFactory();
 	}
 	
-	public static RepartidorDAO getInstance() {
+	public static CamionetaDAO getInstance() {
 		
 		if(instance==null)
-			instance = new RepartidorDAO();
+			instance = new CamionetaDAO();
 		return instance;
 	}
 
 	@Transactional
-	public void saveOrUpdate (Repartidor r) {
+	public void saveOrUpdate (Camioneta c) {
 		Session session = sf.openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(r);
+		session.saveOrUpdate(c);
 		session.getTransaction().commit();
 		session.close();
 	}
 	
-	public Repartidor findRepartidorById(int id) {
+	
+	public Camioneta findCamionetaById(int id) {
+		
 		Session session = sf.openSession();
 		
-		
-		Query<Repartidor> query = session.createQuery("from Repartidor r where r.id = :id", Repartidor.class);
+		Query<Camioneta> query = session.createQuery("from Camioneta c where c.id = :id", Camioneta.class);
 		query.setParameter("id", id);
-		Repartidor repa = query.uniqueResult();
+		Camioneta repa = query.uniqueResult();
 		
 		if(repa !=null) {
 			return repa;
@@ -55,5 +56,5 @@ public class RepartidorDAO {
 		
 	}
 	
-	
+
 }

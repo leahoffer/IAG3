@@ -19,7 +19,7 @@ public class Camioneta {
 	@Id
 	@Column(name="id_camioneta")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String id;
+	private int id;
 	
 	@Column(name="modelo")
 	private String modelo;
@@ -29,15 +29,15 @@ public class Camioneta {
 	
 	
 	@OneToOne (cascade = CascadeType.ALL, 
-            fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name= "id_repartidor")
+            fetch = FetchType.LAZY, optional = false)
+	//@JoinColumn(name= "id_repartidor")
 	private Repartidor r;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -74,6 +74,7 @@ public class Camioneta {
 		super();
 		this.modelo = modelo;
 		this.capacidad = capacidad;
+		
 	}
 	
 	

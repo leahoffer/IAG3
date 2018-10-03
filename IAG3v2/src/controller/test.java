@@ -1,6 +1,9 @@
 package controller;
 
+import dao.RepartidorDAO;
+import model.Camioneta;
 import model.ClientePedido;
+import model.Repartidor;
 
 public class test {
 
@@ -19,7 +22,16 @@ public class test {
 		
 		sl.agregarProducto("prueba");
 	
+		sl.agregarRepartidor("carlitos");
+
+
 		
+		
+		Camioneta camioneta = new Camioneta("ford", "20");
+		
+		sl.agregarCamioneta(1, "ford", "20");
+		
+		sl.AgregarCamionetaARepartidor(1, 1);
 		
 		String i = sl.validarLogin("1", "caca");
 		System.out.println(i);

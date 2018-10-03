@@ -38,8 +38,8 @@ public class ClienteDAO {
 
 
 	public ClientePedido findClienteByDNI(String string) {
-		Session session = sf.openSession();
 		
+		Session session = sf.openSession();
 		
 		Query<ClientePedido> query = session.createQuery("from ClientePedido p where p.dni = :dni", ClientePedido.class);
 		query.setParameter("dni", string);
