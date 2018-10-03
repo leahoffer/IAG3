@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import java.util.ArrayList;
+import java.util.List;
 import dao.ClienteDAO;
 
 @Entity
@@ -33,6 +36,7 @@ public class ClientePedido {
 	
 	@Column(name="estado")
 	private boolean activo;
+	
 	
 	
 	public ClientePedido() {

@@ -3,8 +3,7 @@ package hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.*;
 
-
-
+import model.Camioneta;
 import model.ClientePedido;
 import model.Producto;
 import model.Repartidor;
@@ -23,6 +22,7 @@ public class HibernateUtil {
 			config.addAnnotatedClass(Producto.class);
 			config.addAnnotatedClass(Repartidor.class);
 			config.addAnnotatedClass(UsuarioLogistica.class);
+			config.addAnnotatedClass(Camioneta.class);
 
 			
 			
