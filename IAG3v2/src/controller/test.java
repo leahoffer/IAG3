@@ -10,6 +10,7 @@ public class test {
 		
 		System.out.println("hola mundo");
 		
+		@SuppressWarnings("unused")
 		SistemaLogistica sl = new SistemaLogistica();
 		
 		ClientePedido cp = new ClientePedido("123", "fer", "asd", "41234");
