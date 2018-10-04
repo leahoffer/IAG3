@@ -115,19 +115,6 @@ public class SistemaLogistica {
 			
 		}
 	
-	public void EnviarCambioEstadoAPendiente() {
-		
-	}
-	
-	public void EnviarCambioEstadoADespachado() {
-		
-	}
-	
-	public void EnviarCambioEstadoAEntregado() {
-		
-	}
-	
-	
 	
 	public List<OrdenExpedicion> getall() {
 		return (List<OrdenExpedicion>) OrdenExpedicionDAO.getInstance().findAll();
