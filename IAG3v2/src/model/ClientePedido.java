@@ -37,36 +37,18 @@ public class ClientePedido {
 	@Column(name="estado")
 	private boolean activo;
 	
-	
-	
 	public ClientePedido() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
-
 	public String getContrasenia() {
 		return contrasenia;
 	}
-
-
-
-
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-
-
-
-
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-
-
-
-
 	public ClientePedido(String dni, String nombre, String contrasenia, String direccion, String telefono) {
 		super();
 		this.dni = dni;

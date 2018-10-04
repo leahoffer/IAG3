@@ -1,15 +1,26 @@
 package controller;
 
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 
 import dao.CamionetaDAO;
 import dao.ClienteDAO;
+import dao.HojaRutaDAO;
 import dao.ProductoDAO;
 import dao.RepartidorDAO;
+import enummeration.EstadoOE;
 import model.Camioneta;
 import model.ClientePedido;
+import model.HojaRuta;
+import model.OrdenExpedicion;
 import model.Producto;
 import model.Repartidor;
+
+import dao.OrdenExpedicionDAO;
 
 public class SistemaLogistica {
 	
@@ -47,7 +58,37 @@ public class SistemaLogistica {
 		}
 	}
 	
+	public void agregarOE(String idcliente, int pedido) {
+		OrdenExpedicion oe = new OrdenExpedicion();
+		oe.setPedido(pedido);
+		ClientePedido cliente = ClienteDAO.getInstance().findClienteByDNI(idcliente);
+		Date d = new Date();
+		oe.setCliente(cliente);
+		oe.setEstado(EstadoOE.Pendiente);
+		oe.setFecha(d);
+		OrdenExpedicionDAO.getInstance().saveOrUpdate(oe);
+		
+	}
 	
+	public List<OrdenExpedicion> getall() {
+		return (List<OrdenExpedicion>) OrdenExpedicionDAO.getInstance().findAll();
+		}
+
+		public void ArmarRuta (int repartidor) {
+			HojaRuta hoja = new HojaRuta();
+			Date d = new Date();
+			hoja.setFecha(d);
+			Repartidor r = RepartidorDAO.getInstance().findRepartidorById(repartidor);
+			hoja.setRepartidor(r);
+			List<OrdenExpedicion> oe = OrdenExpedicionDAO.getInstance().findAll();
+			
+			hoja.setPedidos(oe);
+			HojaRutaDAO.getInstance().saveOrUpdate(hoja);
+			
+			
+			
+			
+		}	
 	public void agregarProducto(String nombre) {
 		
 		try {

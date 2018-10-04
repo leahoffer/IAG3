@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class HojaRuta {
 
 	@Id
-	@Column(name="id_hojaRuta")
+	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
@@ -28,10 +28,11 @@ public class HojaRuta {
 	private Date fecha;
 	
 	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_repartidor")
 	private Repartidor repartidor;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="id_oe")
+	@OneToMany (mappedBy="hr", cascade = CascadeType.ALL)
+//	@JoinColumn(name="id_oe")
 	private List<OrdenExpedicion> pedidos;
 	
 	

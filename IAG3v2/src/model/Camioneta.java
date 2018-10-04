@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="Camionetas")
+@Table (name="Camioneta")
 public class Camioneta {
 	
 	@Id
@@ -30,7 +30,7 @@ public class Camioneta {
 	
 	@OneToOne (cascade = CascadeType.ALL, 
             fetch = FetchType.LAZY, optional = false)
-	//@JoinColumn(name= "id_repartidor")
+	@JoinColumn(name= "id_repartidor")
 	private Repartidor r;
 
 	public int getId() {

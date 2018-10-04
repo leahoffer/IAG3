@@ -8,10 +8,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,8 +43,13 @@ public class OrdenExpedicion {
 	private EstadoOE estado;
 	
 	@OneToMany(cascade = CascadeType.ALL)
+			//, mappedBy="OrdenExpedicion")
 	@JoinColumn(name="id_detalleoe")
 	private List<DetalleOE> detalle;
+	
+	@ManyToOne(optional = true, fetch = FetchType.EAGER)
+	@JoinColumn(name="id")
+	private HojaRuta hr;
 	
 	
 	public OrdenExpedicion() {
@@ -85,6 +92,17 @@ public class OrdenExpedicion {
 		return detalle;
 	}
 	public void setDetalle(List<DetalleOE> detalle) {
+		this.detalle = detalle;
+	}
+	private Date getfecha() {
+		Date fechaActual = new Date();
+		return fechaActual;
+	}
+	public OrdenExpedicion(int pedido, EstadoOE estado, List<DetalleOE> detalle) {
+		super();
+		this.fecha = getFecha();
+		this.pedido = pedido;
+		this.estado = estado;
 		this.detalle = detalle;
 	}
 	
