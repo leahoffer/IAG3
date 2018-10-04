@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class HojaRuta {
 
 	@Id
-	@Column(name="id")
+	@Column(name="id_hojaRuta")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
@@ -31,9 +31,9 @@ public class HojaRuta {
 	@JoinColumn(name="id_repartidor")
 	private Repartidor repartidor;
 	
-	@OneToMany (mappedBy="hr", cascade = CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL)
 //	@JoinColumn(name="id_oe")
-	private List<OrdenExpedicion> pedidos;
+	private OrdenExpedicion pedidos;
 	
 	
 	
@@ -60,16 +60,13 @@ public class HojaRuta {
 	public void setRepartidor(Repartidor repartidor) {
 		this.repartidor = repartidor;
 	}
-	public void setPedidos(List<OrdenExpedicion> pedidos) {
-		this.pedidos = pedidos;
-	}
-	public List<OrdenExpedicion> getPedidos() {
+	
+	public OrdenExpedicion getPedidos() {
 		return pedidos;
 	}
-	public void setPediods(List<OrdenExpedicion> pedidos) {
+	public void setPedidos(OrdenExpedicion pedidos) {
 		this.pedidos = pedidos;
 	}
-	
 	private Date getfecha() {
 		Date fechaActual = new Date();
 		return fechaActual;
@@ -77,7 +74,7 @@ public class HojaRuta {
 	
    
 	
-	public HojaRuta(Repartidor repartidor, List<OrdenExpedicion> pedidos) {
+	public HojaRuta(Repartidor repartidor, OrdenExpedicion pedidos) {
 		super();
 		this.fecha = getFecha();
 		this.repartidor = repartidor;

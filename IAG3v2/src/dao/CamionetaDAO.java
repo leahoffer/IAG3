@@ -45,6 +45,7 @@ public class CamionetaDAO {
 		Query<Camioneta> query = session.createQuery("from Camioneta c where c.id = :id", Camioneta.class);
 		query.setParameter("id", id);
 		Camioneta repa = query.uniqueResult();
+		session.close();
 		
 		if(repa !=null) {
 			return repa;

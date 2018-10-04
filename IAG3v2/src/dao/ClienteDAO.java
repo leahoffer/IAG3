@@ -44,6 +44,7 @@ public class ClienteDAO {
 		Query<ClientePedido> query = session.createQuery("from ClientePedido p where p.dni = :dni", ClientePedido.class);
 		query.setParameter("dni", string);
 		ClientePedido clientep = query.uniqueResult();
+		session.close();
 		
 		if(clientep !=null) {
 			return clientep;

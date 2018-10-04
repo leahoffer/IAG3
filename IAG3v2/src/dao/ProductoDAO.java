@@ -4,8 +4,10 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import hibernate.HibernateUtil;
+import model.DetalleOE;
 import model.Producto;
 
 public class ProductoDAO {
@@ -34,6 +36,25 @@ public class ProductoDAO {
 		session.getTransaction().commit();
 		session.close();
 		
+		
+	}
+	
+public Producto findById(int id) {
+		
+		Session session = sf.openSession();
+		
+		Query<Producto> query = session.createQuery("from Producto p where p.id = :id", Producto.class);
+		query.setParameter("id", id);
+		Producto producto = query.uniqueResult();
+		session.close();
+		
+		if(producto !=null) {
+			return producto;
+		}
+		else {
+			session.close();
+			return null;
+		}
 		
 	}
 	

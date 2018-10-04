@@ -1,12 +1,17 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import hibernate.HibernateUtil;
 import model.HojaRuta;
+import model.OrdenExpedicion;
 
 public class HojaRutaDAO {
 	
@@ -34,6 +39,27 @@ public class HojaRutaDAO {
 		session.saveOrUpdate(hoja);
 		session.getTransaction().commit();
 		session.close();
+	}
+	
+	
+	public List<HojaRuta> findAll() {
+		List<HojaRuta> hojas = new ArrayList<>();
+		
+		
+		try {
+			Session session = sf.openSession();
+			Query query = session.createQuery("from HojaRuta");
+			hojas = query.list();
+			session.close();
+			
+			return hojas;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+		return hojas;
+		
+		}	
 	}
 	
 

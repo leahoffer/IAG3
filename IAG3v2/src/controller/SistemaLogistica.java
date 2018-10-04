@@ -9,12 +9,14 @@ import org.hibernate.SessionFactory;
 
 import dao.CamionetaDAO;
 import dao.ClienteDAO;
+import dao.DetalleOeDAO;
 import dao.HojaRutaDAO;
 import dao.ProductoDAO;
 import dao.RepartidorDAO;
 import enummeration.EstadoOE;
 import model.Camioneta;
 import model.ClientePedido;
+import model.DetalleOE;
 import model.HojaRuta;
 import model.OrdenExpedicion;
 import model.Producto;
@@ -58,7 +60,7 @@ public class SistemaLogistica {
 		}
 	}
 	
-	public void agregarOE(String idcliente, int pedido) {
+	public void agregarOE(String idcliente, int pedido, int iddetalle) {
 		OrdenExpedicion oe = new OrdenExpedicion();
 		oe.setPedido(pedido);
 		ClientePedido cliente = ClienteDAO.getInstance().findClienteByDNI(idcliente);
@@ -66,28 +68,43 @@ public class SistemaLogistica {
 		oe.setCliente(cliente);
 		oe.setEstado(EstadoOE.Pendiente);
 		oe.setFecha(d);
+		DetalleOE doe = DetalleOeDAO.getInstance().findById(iddetalle);
+		oe.setDetalle(doe);
 		OrdenExpedicionDAO.getInstance().saveOrUpdate(oe);
 		
 	}
 	
+	public void agregarDetalleOE (int cantidad, int idproducto) {
+		DetalleOE doe = new DetalleOE();
+		doe.setCantidad(cantidad);
+		Producto p = ProductoDAO.getInstance().findById(idproducto);
+		doe.setProducto(p);
+		DetalleOeDAO.getInstance().saveOrUpdate(doe);
+		
+	}
+	
+	
+	
+	
 	public List<OrdenExpedicion> getall() {
 		return (List<OrdenExpedicion>) OrdenExpedicionDAO.getInstance().findAll();
-		}
+	}
+	
+	public List<HojaRuta> getallHojas() {
+		return (List<HojaRuta>) HojaRutaDAO.getInstance().findAll();
+	}
 
-		public void ArmarRuta (int repartidor) {
+		public void ArmarRuta (int repartidor, int ordenExpedicion) {
 			HojaRuta hoja = new HojaRuta();
 			Date d = new Date();
 			hoja.setFecha(d);
 			Repartidor r = RepartidorDAO.getInstance().findRepartidorById(repartidor);
 			hoja.setRepartidor(r);
-			List<OrdenExpedicion> oe = OrdenExpedicionDAO.getInstance().findAll();
-			
+			OrdenExpedicion oe = OrdenExpedicionDAO.getInstance().findOrdenById(ordenExpedicion);			
 			hoja.setPedidos(oe);
-			HojaRutaDAO.getInstance().saveOrUpdate(hoja);
 			
-			
-			
-			
+	     	HojaRutaDAO.getInstance().saveOrUpdate(hoja);
+				
 		}	
 	public void agregarProducto(String nombre) {
 		

@@ -42,14 +42,11 @@ public class OrdenExpedicion {
 	@Enumerated(EnumType.STRING)
 	private EstadoOE estado;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-			//, mappedBy="OrdenExpedicion")
-	@JoinColumn(name="id_detalleoe")
-	private List<DetalleOE> detalle;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_detalleOE")
+	private DetalleOE detalle;
 	
-	@ManyToOne(optional = true, fetch = FetchType.EAGER)
-	@JoinColumn(name="id")
-	private HojaRuta hr;
+
 	
 	
 	public OrdenExpedicion() {
@@ -88,23 +85,24 @@ public class OrdenExpedicion {
 	public void setEstado(EstadoOE estado) {
 		this.estado = estado;
 	}
-	public List<DetalleOE> getDetalle() {
+	public DetalleOE getDetalle() {
 		return detalle;
 	}
-	public void setDetalle(List<DetalleOE> detalle) {
+	public void setDetalle(DetalleOE detalle) {
 		this.detalle = detalle;
 	}
 	private Date getfecha() {
 		Date fechaActual = new Date();
 		return fechaActual;
 	}
-	public OrdenExpedicion(int pedido, EstadoOE estado, List<DetalleOE> detalle) {
+	public OrdenExpedicion(int pedido, EstadoOE estado, DetalleOE detalle) {
 		super();
 		this.fecha = getFecha();
 		this.pedido = pedido;
 		this.estado = estado;
 		this.detalle = detalle;
 	}
+
 	
 	
 	

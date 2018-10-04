@@ -8,46 +8,47 @@ import org.hibernate.query.Query;
 
 import hibernate.HibernateUtil;
 import model.ClientePedido;
-import model.Repartidor;
+import model.DetalleOE;
 
-public class RepartidorDAO {
+public class DetalleOeDAO {
 	
-	
-	private static RepartidorDAO instance = null;
+
+	private static DetalleOeDAO instance = null;
 	private static SessionFactory sf = null;
 	
 	
-	private RepartidorDAO() {
+	private DetalleOeDAO() {
 		sf = HibernateUtil.getSessionFactory();
 	}
 	
-	public static RepartidorDAO getInstance() {
+	public static DetalleOeDAO getInstance() {
 		
 		if(instance==null)
-			instance = new RepartidorDAO();
+			instance = new DetalleOeDAO();
 		return instance;
 	}
 
 	@Transactional
-	public void saveOrUpdate (Repartidor r) {
+	public void saveOrUpdate (DetalleOE cp) {
 		Session session = sf.openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(r);
+		session.saveOrUpdate(cp);
 		session.getTransaction().commit();
 		session.close();
 	}
 	
-	public Repartidor findRepartidorById(int id) {
+	
+public DetalleOE findById(int id) {
+		
 		Session session = sf.openSession();
 		
-		
-		Query<Repartidor> query = session.createQuery("from Repartidor r where r.id = :id", Repartidor.class);
+		Query<DetalleOE> query = session.createQuery("from DetalleOE doe where doe.id = :id", DetalleOE.class);
 		query.setParameter("id", id);
-		Repartidor repa = query.uniqueResult();
+		DetalleOE detalleoe = query.uniqueResult();
 		session.close();
 		
-		if(repa !=null) {
-			return repa;
+		if(detalleoe !=null) {
+			return detalleoe;
 		}
 		else {
 			session.close();
@@ -55,6 +56,5 @@ public class RepartidorDAO {
 		}
 		
 	}
-	
 	
 }
