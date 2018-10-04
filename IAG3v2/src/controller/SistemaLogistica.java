@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +29,8 @@ public class SistemaLogistica {
 	
 	private static SistemaLogistica instancia;
 	private static SessionFactory sf = null;
+	
+	
 
 	public SistemaLogistica() {
 		
@@ -83,6 +86,46 @@ public class SistemaLogistica {
 		
 	}
 	
+	public List<String> EnviarEstadoPedido(String dnicliente) {
+		
+		List<String> notificacion = new ArrayList<>(); 
+		List<OrdenExpedicion> oes = OrdenExpedicionDAO.getInstance().findAll();
+		String dni = null;
+		for(OrdenExpedicion o : oes) {
+			dni = o.getCliente().getClienteId();
+			
+			ClientePedido cliente = ClienteDAO.getInstance().findClienteByDNI(dni);
+			
+			if (cliente.getDni().equals(dnicliente)) {
+				notificacion.add(o.getEstado().name());
+				notificacion.add(cliente.getNombre());
+				notificacion.add(cliente.getDireccion());
+				notificacion.add(convertirFechaString(o.getFecha()));
+				
+			}
+			
+		}
+		return notificacion;
+		
+	}
+	
+	public String convertirFechaString(Date date){
+			
+		   return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+			
+		}
+	
+	public void EnviarCambioEstadoAPendiente() {
+		
+	}
+	
+	public void EnviarCambioEstadoADespachado() {
+		
+	}
+	
+	public void EnviarCambioEstadoAEntregado() {
+		
+	}
 	
 	
 	
@@ -122,8 +165,9 @@ public class SistemaLogistica {
 				OrdenExpedicionDAO.getInstance().saveOrUpdate(oe);
 			}
 			
-			
 		}
+		
+		
 	public void agregarProducto(String nombre) {
 		
 		try {

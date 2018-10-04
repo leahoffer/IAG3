@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.RepartidorDAO;
@@ -55,17 +56,34 @@ public class test {
 		sl.agregarOE("3", 5, 3);
 		
 //	*/
+		//verica que el pedido esta pendiente y imprime estado, nombre, direccion.
+		List<String> prueba2 = sl.EnviarEstadoPedido("1");
 		
+		for(String la : prueba2) {
+			if(la!=null)
+			System.out.println(la);
+		}
 		
+		//se arma la hoja de ruta con el id de repartidor y el id hoja de ruta
 		sl.ArmarRuta(1,1);
 		sl.ArmarRuta(1,2);
 		sl.ArmarRuta(2,3);
 		
+		
+		// me trae todas las hojas de ruta
 		List<HojaRuta> hr = sl.getallHojas();
 		for(HojaRuta o : hr) {
 			System.out.println(o.getPedidos().getEstado());
 			System.out.println(o.getPedidos().getCliente().getDireccion());
 			System.out.println(o.getPedidos().getDetalle().getProducto().getNombre());
+		}
+		
+		//verica que el pedido esta despachado y imprime estado, nombre, direccion.
+		List<String> prueba1 = sl.EnviarEstadoPedido("1");
+		
+		for(String la : prueba1) {
+			if(la!=null)
+			System.out.println(la);
 		}
 		
 		List<OrdenExpedicion> oe = sl.getDespachados();
@@ -74,6 +92,7 @@ public class test {
 		}
 		
 		
+		//todos los pedidos que estan en la hoja de ruta los marca como entregados y quedan guardados.
 		sl.EntregarPedidos();
 		
 		List<OrdenExpedicion> oe1 = sl.getDespachados();
@@ -84,20 +103,23 @@ public class test {
 		
 		List<HojaRuta> hr1 = sl.getallHojas();
 		for(HojaRuta o : hr1) {
+			if(o!=null)
 			System.out.println(o.getPedidos().getEstado());
 		}
 		
+		//verica que el pedido esta entregado y imprime estado, nombre, direccion.
+		List<String> prueba = new ArrayList<>();
+	
+		prueba = sl.EnviarEstadoPedido("1");
 		
+		for(String la : prueba) {
+			if(la!=null)
+			System.out.println(la);
+		}
 		
-//		List<OrdenExpedicion> oe = sl.getall();
-//		for(OrdenExpedicion o : oe) {
-//			System.out.println(o.getCliente().getDireccion());
-//			System.out.println(o.getDetalle().getProducto().getNombre());
-//		}
-		
-		
-//		String i = sl.validarLogin("1", "fernet");
-//		System.out.println(i);
+		// valida el login con el dni del cliente y la contrasenia y imprime el dni para ver si lo valida
+		String i = sl.validarLogin("1", "fernet");
+		System.out.println(i);
 
 	}
 
