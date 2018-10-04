@@ -100,12 +100,30 @@ public class SistemaLogistica {
 			hoja.setFecha(d);
 			Repartidor r = RepartidorDAO.getInstance().findRepartidorById(repartidor);
 			hoja.setRepartidor(r);
-			OrdenExpedicion oe = OrdenExpedicionDAO.getInstance().findOrdenById(ordenExpedicion);			
+			OrdenExpedicion oe = OrdenExpedicionDAO.getInstance().findOrdenById(ordenExpedicion);
+			oe.setEstado(EstadoOE.Despachado);
 			hoja.setPedidos(oe);
 			
 	     	HojaRutaDAO.getInstance().saveOrUpdate(hoja);
 				
 		}	
+		
+		public List<OrdenExpedicion> getDespachados() {
+			return (List<OrdenExpedicion>) OrdenExpedicionDAO.getInstance().findDespachados();
+		} 
+		
+		public void EntregarPedidos() {
+		//	List<HojaRuta> hojas = new ArrayList<>();
+		//	hojas = HojaRutaDAO.getInstance().findAll();
+			List<OrdenExpedicion> oes = OrdenExpedicionDAO.getInstance().findDespachados();
+			
+			for(OrdenExpedicion oe : oes) {
+				oe.setEstado(EstadoOE.Entregado);
+				OrdenExpedicionDAO.getInstance().saveOrUpdate(oe);
+			}
+			
+			
+		}
 	public void agregarProducto(String nombre) {
 		
 		try {

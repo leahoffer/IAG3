@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
+import enummeration.EstadoOE;
 import hibernate.HibernateUtil;
 import model.Camioneta;
 import model.ClientePedido;
@@ -38,6 +39,28 @@ public class OrdenExpedicionDAO {
 		try {
 			Session session = sf.openSession();
 			Query query = session.createQuery("from OrdenExpedicion");
+			ordenes = query.list();
+			session.close();
+			
+			return ordenes;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+		return ordenes;
+		
+		}	
+	}
+	
+	
+	public List<OrdenExpedicion> findDespachados() {
+		List<OrdenExpedicion> ordenes = new ArrayList<>();
+		
+		
+		try {
+			Session session = sf.openSession();
+			Query<OrdenExpedicion> query = session.createQuery("from OrdenExpedicion oe where oe.estado = :despachado", OrdenExpedicion.class);
+			query.setParameter("despachado", EstadoOE.Despachado);
 			ordenes = query.list();
 			session.close();
 			
