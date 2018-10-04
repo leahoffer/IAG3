@@ -23,17 +23,14 @@ public class test {
 		sl.agregarProducto("prueba");
 	
 		sl.agregarRepartidor("carlitos");
-
-
-		
-		
-		Camioneta camioneta = new Camioneta("ford", "20");
 		
 		sl.agregarCamioneta(1, "ford", "20");
 		
+		
 		sl.AgregarCamionetaARepartidor(1, 1);
 		
-		String i = sl.validarLogin("1", "caca");
+		
+		String i = sl.validarLogin("2", "caca");
 		System.out.println(i);
 
 	}
