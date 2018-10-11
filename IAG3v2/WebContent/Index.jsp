@@ -8,10 +8,11 @@
 </head>
 <body>
 <h3>LOGISTICA SARASA</h3>
-<a>Es solo es una prueba</a><br>
-<a>xxxxxxxxxxxx</a><br>
-<a href=ControladorWeb?action=ListarMat>Consultar xxxxxx</a><br>
-<a href=ControladorWeb?action=ListaSemi>Consultar xxxxxxxxx</a><br>
+
+<a href=ControladorWeb?action=Login>Login</a><br>
+
+
+
 <hr>
 
 </body>

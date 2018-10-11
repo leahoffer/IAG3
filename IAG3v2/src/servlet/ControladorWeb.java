@@ -32,8 +32,8 @@ public class ControladorWeb extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String jsp="default";
-		if ("ListaSemi".equals(request.getParameter("action"))){
-			jsp ="ListarElaborados.jsp";
+		if ("Login".equals(request.getParameter("action"))){
+			jsp ="login.jsp";
 		//	request.setAttribute("listaElaborados", Sistema.getInstancia().getElaboradoList());
 			
 		}

@@ -29,7 +29,6 @@ public class test {
 		sl.agregarCliente(2, "Juan Martin", "piter", "Pedro Dreyer 1234", "42992134");
 		sl.agregarCliente(3, "Eber", "jaimito", "Mitre 1234", "42992134");
 		sl.agregarCliente(4, "Martin", "anibal", "Av. Espora 1456", "42992134");
-		sl.agregarCliente(5, "Pablo", "partido", "Miramar 0878", "42992134");
 		
 		
 		sl.agregarProducto("Coca-Cola Light");

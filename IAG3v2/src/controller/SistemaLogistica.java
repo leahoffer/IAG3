@@ -253,7 +253,7 @@ public class SistemaLogistica {
 		if(cliente != null && cliente.validarLogin(contrasenia) && cliente.isActivo()==true)
 			return cliente.getClienteId();
 		else
-			return (Integer) null;
+			return 0;
 }
 	
 	public int rutaPrivada(int dni, int cantidad, String producto) {

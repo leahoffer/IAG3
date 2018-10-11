@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import controller.SistemaLogistica;
 
 /**
- * Servlet implementation class loginServlet
+ * Servlet implementation class Seguimiento
  */
-@WebServlet("/loginServlet")
-public class loginServlet extends HttpServlet {
-	private static final long serialVersionUID = 3L;
+@WebServlet("/Seguimiento")
+public class Seguimiento extends HttpServlet {
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public loginServlet() {
+    public Seguimiento() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,38 +32,31 @@ public class loginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		SistemaLogistica sl = SistemaLogistica.getInstancia();
 		
 		
-		int email = Integer.parseInt(request.getParameter("username"));
-		String password = request.getParameter("password");
+		request.getParameter("username");
 		
-		try {
-			int clienteId = sl.validarLogin(email, password);
-			if(clienteId> 0) {
-				
-				System.out.println("si");
-				
-				response.sendRedirect("seguimiento.jsp");
-				return;			
-				}
+		String jsp="default";
+		if ("Salir".equals(request.getParameter("action"))){
+			jsp ="end.jsp";
 			
-			else {
-				response.sendRedirect("end.jsp");
-				return;			
-				}
-		} catch (Exception e) {
-			response.sendRedirect("./jsp/cliente/login.jsp?badCredentials");
-			e.printStackTrace();
+			dispatcher (jsp, request, response);
+		
 		}
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	protected void dispatcher(String jsp, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher(jsp);
+		rd.forward(request, response);
 	}
 
 }
