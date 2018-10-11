@@ -19,7 +19,7 @@ public class ClientePedido {
 	
 	@Id
 	@Column(name="dni")
-	private String dni;
+	private int dni;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -49,7 +49,7 @@ public class ClientePedido {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	public ClientePedido(String dni, String nombre, String contrasenia, String direccion, String telefono) {
+	public ClientePedido(int dni, String nombre, String contrasenia, String direccion, String telefono) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;
@@ -59,10 +59,10 @@ public class ClientePedido {
 		this.activo = true;
 	}
 
-	public String getDni() {
+	public int getDni() {
 		return dni;
 	}
-	public void setDni(String dni) {
+	public void setDni(int dni) {
 		this.dni = dni;
 	}
 	public String getNombre() {
@@ -101,7 +101,7 @@ public class ClientePedido {
 		return activo;
 	}
 
-	public String getClienteId() {
+	public int getClienteId() {
 		return dni;
 	}
 	

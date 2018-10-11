@@ -39,7 +39,7 @@ public class ProductoDAO {
 		
 	}
 	
-public Producto findById(int id) {
+	public Producto findById(int id) {
 		
 		Session session = sf.openSession();
 		
@@ -55,6 +55,25 @@ public Producto findById(int id) {
 			session.close();
 			return null;
 		}
+		
+	}
+
+	public Producto findbyNombre(String nombre) {
+		
+		Session session = sf.openSession();
+		
+		Query<Producto> query = session.createQuery("from Producto p where p.nombre = :nombre", Producto.class);
+		query.setParameter("nombre", nombre);
+		Producto producto = query.uniqueResult();
+		session.close();
+		
+		if(producto !=null) {
+			return producto;
+		}
+		else {
+			return null;
+		}
+		
 		
 	}
 	

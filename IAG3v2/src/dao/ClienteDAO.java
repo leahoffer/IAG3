@@ -37,7 +37,7 @@ public class ClienteDAO {
 	}
 
 
-	public ClientePedido findClienteByDNI(String string) {
+	public ClientePedido findClienteByDNI(int string) {
 		
 		Session session = sf.openSession();
 		

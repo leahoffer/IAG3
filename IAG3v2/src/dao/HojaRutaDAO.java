@@ -12,6 +12,7 @@ import org.hibernate.query.Query;
 import hibernate.HibernateUtil;
 import model.HojaRuta;
 import model.OrdenExpedicion;
+import model.Producto;
 
 public class HojaRutaDAO {
 	
@@ -63,5 +64,24 @@ public class HojaRutaDAO {
 		}	
 	}
 	
+	
+public HojaRuta findbyId(int id) {
+		
+		Session session = sf.openSession();
+		
+		Query<HojaRuta> query = session.createQuery("from HojaRuta hr where hr.id = :id", HojaRuta.class);
+		query.setParameter("id", id);
+		HojaRuta HojaRuta = query.uniqueResult();
+		session.close();
+		
+		if(HojaRuta !=null) {
+			return HojaRuta;
+		}
+		else {
+			return null;
+		}
+		
+		
+	}
 
 }

@@ -45,7 +45,7 @@ public class SistemaLogistica {
 	}
 	
 	
-	public void agregarCliente(String dni, String nombre, String contrasenia, String direccion, String telefono) {
+	public void agregarCliente(int dni, String nombre, String contrasenia, String direccion, String telefono) {
 		
 		try {
 		ClientePedido cp = new ClientePedido();
@@ -63,7 +63,9 @@ public class SistemaLogistica {
 		}
 	}
 	
-	public void agregarOE(String idcliente, int pedido, int iddetalle) {
+	//pedido refiere al peso (que va a ocupar en el camion)
+	
+	public int agregarOE(int idcliente, int pedido, int iddetalle) {
 		OrdenExpedicion oe = new OrdenExpedicion();
 		oe.setPedido(pedido);
 		ClientePedido cliente = ClienteDAO.getInstance().findClienteByDNI(idcliente);
@@ -75,28 +77,54 @@ public class SistemaLogistica {
 		oe.setDetalle(doe);
 		OrdenExpedicionDAO.getInstance().saveOrUpdate(oe);
 		
+		return oe.getNro();
+		
 	}
 	
-	public void agregarDetalleOE (int cantidad, int idproducto) {
+	public int agregarDetalleOE (int cantidad, int idproducto) {
 		DetalleOE doe = new DetalleOE();
 		doe.setCantidad(cantidad);
 		Producto p = ProductoDAO.getInstance().findById(idproducto);
 		doe.setProducto(p);
 		DetalleOeDAO.getInstance().saveOrUpdate(doe);
+		return doe.getId();
 		
 	}
 	
-	public List<String> EnviarEstadoPedido(String dnicliente) {
+	public DetalleOE DOEfindbyid (int id) {
+		DetalleOE doe = DetalleOeDAO.getInstance().findById(id);
+		return doe;
+	}
+	
+	
+	public HojaRuta HRfindbyid (int id) {
+		HojaRuta HojaRuta = HojaRutaDAO.getInstance().findbyId(id);
+		return HojaRuta;
+	}
+	
+	
+	public Producto PfindByNombre (String nombre) {
+		Producto p = ProductoDAO.getInstance().findbyNombre(nombre);
+		
+		if(p!=null) {
+			return p;
+		}else {
+		return null;
+		}
+	}
+	
+	
+	public List<String> EnviarEstadoPedido(int dnicliente) {
 		
 		List<String> notificacion = new ArrayList<>(); 
 		List<OrdenExpedicion> oes = OrdenExpedicionDAO.getInstance().findAll();
-		String dni = null;
+		int dni = 0;
 		for(OrdenExpedicion o : oes) {
 			dni = o.getCliente().getClienteId();
 			
 			ClientePedido cliente = ClienteDAO.getInstance().findClienteByDNI(dni);
 			
-			if (cliente.getDni().equals(dnicliente)) {
+			if (cliente.getDni()==(dnicliente)) {
 				notificacion.add(o.getEstado().name());
 				notificacion.add(cliente.getNombre());
 				notificacion.add(cliente.getDireccion());
@@ -124,7 +152,7 @@ public class SistemaLogistica {
 		return (List<HojaRuta>) HojaRutaDAO.getInstance().findAll();
 	}
 
-		public void ArmarRuta (int repartidor, int ordenExpedicion) {
+		public int ArmarRuta (int repartidor, int ordenExpedicion) {
 			HojaRuta hoja = new HojaRuta();
 			Date d = new Date();
 			hoja.setFecha(d);
@@ -135,8 +163,12 @@ public class SistemaLogistica {
 			hoja.setPedidos(oe);
 			
 	     	HojaRutaDAO.getInstance().saveOrUpdate(hoja);
+	     	
+	     	return hoja.getId();
 				
 		}	
+		
+		
 		
 		public List<OrdenExpedicion> getDespachados() {
 			return (List<OrdenExpedicion>) OrdenExpedicionDAO.getInstance().findDespachados();
@@ -155,17 +187,20 @@ public class SistemaLogistica {
 		}
 		
 		
-	public void agregarProducto(String nombre) {
+	public int agregarProducto(String nombre) {
 		
 		try {
 		Producto p = new Producto();
 		p.setNombre(nombre);
 		
 		ProductoDAO.getInstance().saveOrUpdate(p);
+		return p.getId();
 		
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		return 0;
+		
 	}
 	
 	public void agregarRepartidor(String nombre) {
@@ -213,13 +248,36 @@ public class SistemaLogistica {
 		
 		
 		
-	public String validarLogin(String dni, String contrasenia) {
+	public int validarLogin(int dni, String contrasenia) {
 		ClientePedido cliente = ClienteDAO.getInstance().findClienteByDNI(dni);
 		if(cliente != null && cliente.validarLogin(contrasenia) && cliente.isActivo()==true)
 			return cliente.getClienteId();
 		else
-			return null;
+			return (Integer) null;
 }
+	
+	public int rutaPrivada(int dni, int cantidad, String producto) {
+		
+		Producto p = SistemaLogistica.getInstancia().PfindByNombre(producto);
+		if (p==null) {
+			int idp = SistemaLogistica.getInstancia().agregarProducto(producto);
+			int id = SistemaLogistica.getInstancia().agregarDetalleOE(cantidad, idp);
+			DetalleOE doe = SistemaLogistica.getInstancia().DOEfindbyid(id);
+			int nro = SistemaLogistica.getInstancia().agregarOE(dni, doe.getCantidad(), id);
+			return nro;
+			
+		}else {
+		int id = SistemaLogistica.getInstancia().agregarDetalleOE(cantidad, p.getId());
+		DetalleOE doe = SistemaLogistica.getInstancia().DOEfindbyid(id);
+		int nro = SistemaLogistica.getInstancia().agregarOE(dni, doe.getCantidad(), id);
+		
+		
+		
+		return nro;
+		}
+		
+		
+	}
 	
 	
 }
