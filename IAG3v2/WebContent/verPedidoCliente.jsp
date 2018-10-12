@@ -17,7 +17,7 @@
 <title>Pedidos</title>
 </head>
 <body>
-<form action="ControladorAdmin">
+<form action="Estados">
  
 <% List<OrdenExpedicion> ordenes = (List<OrdenExpedicion>)SistemaLogistica.getInstancia().getall(); %>
 <%for (OrdenExpedicion rep : ordenes){%>
@@ -26,6 +26,10 @@
 		<%}%>
 		<br>
 		
+		
+	Por favor Seleccionar el ID para enviar el ESTADO DEL PEDIDO:
+	
+	<br>	
 		
 <select name="Ordenes">
 

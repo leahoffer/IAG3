@@ -23,7 +23,7 @@ public class Repartidor {
 	private int id;
 	private String nombre;
 	
-	@OneToOne(fetch = FetchType.LAZY, optional=true)
+	@OneToOne(fetch = FetchType.EAGER, optional=true)
 	@JoinColumn(name="id_camioneta")
 	private Camioneta camioneta;
 	
