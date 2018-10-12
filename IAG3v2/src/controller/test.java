@@ -55,7 +55,7 @@ public class test {
 		sl.agregarOE(3, 5, 3);
 		
 //	*/
-		
+		/*
 		
 		//se arma la hoja de ruta con el id de repartidor y el id hoja de oe
 		sl.ArmarRuta(1,1);
@@ -155,7 +155,8 @@ public class test {
 					System.out.println(o1.getPedidos().getCliente().getDireccion());
 					System.out.println(o1.getPedidos().getDetalle().getCantidad());
 					System.out.println(o1.getPedidos().getDetalle().getProducto().getNombre());
-		
+ */
+					
 	}
 
 

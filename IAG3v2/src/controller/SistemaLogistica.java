@@ -177,6 +177,10 @@ public class SistemaLogistica {
 			return (List<OrdenExpedicion>) OrdenExpedicionDAO.getInstance().findDespachados();
 		} 
 		
+		public List<OrdenExpedicion> getPendientes() {
+			return (List<OrdenExpedicion>) OrdenExpedicionDAO.getInstance().findPendientes();
+		} 
+		
 		public void EntregarPedidos() {
 		//	List<HojaRuta> hojas = new ArrayList<>();
 		//	hojas = HojaRutaDAO.getInstance().findAll();

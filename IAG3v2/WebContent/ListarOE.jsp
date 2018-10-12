@@ -41,14 +41,14 @@ Por favor seleccione el ID del repartidor para confeccionarle la Hoja de Ruta
 		Por favor seleccione el ID de la OrdenDeExpedicion para confeccionarle la Hoja de Ruta al Repartidor.
 <br><br>
 
-<% List<OrdenExpedicion> ordenes = (List<OrdenExpedicion>)SistemaLogistica.getInstancia().getall(); %>
+<% List<OrdenExpedicion> ordenes = (List<OrdenExpedicion>)SistemaLogistica.getInstancia().getPendientes(); %>
 <%for (OrdenExpedicion rep : ordenes){%>
 		<%out.println("DNI:   " + rep.getCliente().getClienteId() + "---Direccion Cliente:  " +rep.getCliente().getDireccion()+ "---Producto:  " +rep.getDetalle().getProducto().getNombre() + "----Cantidad " + rep.getDetalle().getCantidad()); %>
 		<br>  
 		<%}%>
 		<br>
 		
-	<% 	 List<OrdenExpedicion> ordenes1 = (List<OrdenExpedicion>)SistemaLogistica.getInstancia().getall(); %>
+	<% 	 List<OrdenExpedicion> ordenes1 = (List<OrdenExpedicion>)SistemaLogistica.getInstancia().getPendientes(); %>
 	<select name="OrdenExpedicion">
 		<%for (OrdenExpedicion or : ordenes1){%>
 			<option value=<%=or.getNro()%>><%=or.getNro()%></option>

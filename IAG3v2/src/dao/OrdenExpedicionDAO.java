@@ -74,6 +74,29 @@ public class OrdenExpedicionDAO {
 		}	
 	}
 	
+	public List<OrdenExpedicion> findPendientes() {
+		List<OrdenExpedicion> ordenes = new ArrayList<>();
+		
+		
+		try {
+			Session session = sf.openSession();
+			Query<OrdenExpedicion> query = session.createQuery("from OrdenExpedicion oe where oe.estado = :pendiente", OrdenExpedicion.class);
+			query.setParameter("pendiente", EstadoOE.Pendiente);
+			ordenes = query.list();
+			session.close();
+			
+			return ordenes;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+		return ordenes;
+		
+		}	
+	}
+	
+	
+	
 	public OrdenExpedicion findOrdenById(int nro) {
 		
 		Session session = sf.openSession();
