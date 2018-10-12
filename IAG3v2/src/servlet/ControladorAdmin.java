@@ -14,14 +14,14 @@ import controller.*;
 /**
  * Servlet implementation class ControladorWeb
  */
-@WebServlet("/ControladorWeb")
-public class ControladorWeb extends HttpServlet {
+@WebServlet("/ControladorAdmin")
+public class ControladorAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControladorWeb() {
+    public ControladorAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +32,13 @@ public class ControladorWeb extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String jsp="default";
-		if ("LoginCliente".equals(request.getParameter("action"))){
-			jsp ="login.jsp";
+		if ("ArmarRuta".equals(request.getParameter("action"))){
+			jsp ="ListarOE.jsp";
 		//	request.setAttribute("listaElaborados", Sistema.getInstancia().getElaboradoList());
 			
 		}
-		if ("Login".equals(request.getParameter("action"))){
-			jsp ="loginAdmin.jsp";
+		if ("Estados".equals(request.getParameter("action"))){
+			jsp ="verPedidoCliente.jsp";
 			//request.setAttribute("listaSemiElaborados", Sistema.getInstancia().getSemiElaboradoList());
 		}
 		

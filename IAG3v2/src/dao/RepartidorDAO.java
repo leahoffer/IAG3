@@ -1,5 +1,8 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
@@ -8,6 +11,7 @@ import org.hibernate.query.Query;
 
 import hibernate.HibernateUtil;
 import model.ClientePedido;
+import model.OrdenExpedicion;
 import model.Repartidor;
 
 public class RepartidorDAO {
@@ -56,5 +60,24 @@ public class RepartidorDAO {
 		
 	}
 	
+	public List<Repartidor> findAll(){
+		List<Repartidor> repartidores = new ArrayList<>();
+		
+		
+		try {
+			Session session = sf.openSession();
+			Query query = session.createQuery("from Repartidor");
+			repartidores = query.list();
+			session.close();
+			
+			return repartidores;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+		return repartidores;
+		
+		}			
+	}
 	
 }

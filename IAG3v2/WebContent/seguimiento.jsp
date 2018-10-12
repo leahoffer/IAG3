@@ -4,6 +4,9 @@
 <%@ page import ="controller.*" %>
 <%@ page import ="java.util.List" %>
 
+<%@ page import ="servlet.LoginUtils" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +16,10 @@
 <body>
 <form action="Seguimiento">
 
-	<%	List<String> prueba1 = SistemaLogistica.getInstancia().EnviarEstadoPedido(1); %>
+<% 
+	Integer clienteId = LoginUtils.getInstancia().getClienteBySession(request.getRequestedSessionId());
+%>
+	<%	List<String> prueba1 = SistemaLogistica.getInstancia().EnviarEstadoPedido(clienteId); %>
 	
 
 		<%for(String la : prueba1) {%>

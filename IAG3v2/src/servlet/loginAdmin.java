@@ -14,14 +14,14 @@ import controller.SistemaLogistica;
 /**
  * Servlet implementation class loginServlet
  */
-@WebServlet("/loginServlet")
-public class loginServlet extends HttpServlet {
+@WebServlet("/loginAdmin")
+public class loginAdmin extends HttpServlet {
 	private static final long serialVersionUID = 3L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public loginServlet() {
+    public loginAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,7 +45,7 @@ public class loginServlet extends HttpServlet {
 				
 				LoginUtils.getInstancia().saveSession(request.getSession().getId(), clienteId);
 
-				response.sendRedirect("seguimiento.jsp");
+				response.sendRedirect("menu.jsp");
 				return;			
 				}
 			

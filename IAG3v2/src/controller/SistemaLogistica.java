@@ -147,6 +147,9 @@ public class SistemaLogistica {
 	public List<OrdenExpedicion> getall() {
 		return (List<OrdenExpedicion>) OrdenExpedicionDAO.getInstance().findAll();
 	}
+	public List<Repartidor> getallRep() {
+		return (List<Repartidor>) RepartidorDAO.getInstance().findAll();
+	}
 	
 	public List<HojaRuta> getallHojas() {
 		return (List<HojaRuta>) HojaRutaDAO.getInstance().findAll();
