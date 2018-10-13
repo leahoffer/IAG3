@@ -34,17 +34,41 @@ public class ControladorAdmin extends HttpServlet {
 		String jsp="default";
 		if ("ArmarRuta".equals(request.getParameter("action"))){
 			jsp ="ListarOE.jsp";
-		//	request.setAttribute("listaElaborados", Sistema.getInstancia().getElaboradoList());
 			
 		}
 		if ("Estados".equals(request.getParameter("action"))){
 			jsp ="verPedidoCliente.jsp";
-			//request.setAttribute("listaSemiElaborados", Sistema.getInstancia().getSemiElaboradoList());
+		}
+		
+	
+		if ("Seguimiento".equals(request.getParameter("action"))){
+			jsp ="seguimiento.jsp";
+		}
+		
+		
+		
+		if ("Envio".equals(request.getParameter("action"))){
+			jsp ="nuevoenvio.jsp";
+		}
+		
+		
+		if ("Enviar".equals(request.getParameter("action"))){
+			int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+			String producto = request.getParameter("producto");
+			SistemaLogistica.getInstancia().rutaPrivada(LoginUtils.getInstancia().getClienteBySession(request.getRequestedSessionId()), cantidad, producto);
+			jsp ="menu.jsp";
 		}
 		
 		
 		if("default".equals(request.getParameter("action")))
 			jsp ="Index.jsp";
+		
+		String volver = request.getParameter("Volver");
+		if(volver!=null) {
+			if ("Volver".equals(request.getParameter("Volver")))
+				jsp ="menuCliente.jsp";
+		}
+		
 		
 		dispatcher (jsp, request, response);
 	}

@@ -46,9 +46,33 @@ public class ControladorWeb extends HttpServlet {
 		if("default".equals(request.getParameter("action")))
 			jsp ="Index.jsp";
 		
+		if("Registro".equals(request.getParameter("action"))) 
+			jsp ="registro.jsp";
+		
+
+		String registrar = request.getParameter("Registrar");
+		
+		if(registrar !=null) {
+			if(request.getParameter("Registrar").equals("Registrarse")) {
+				
+				int dni = Integer.parseInt(request.getParameter("dni"));
+				String nombre = request.getParameter("nombre");
+				String direccion = request.getParameter("direccion");
+				String telefono = request.getParameter("telefono");
+				String password = request.getParameter("password");
+				
+				SistemaLogistica.getInstancia().agregarCliente(dni, nombre, password, direccion, telefono);
+				LoginUtils.getInstancia().saveSession(request.getSession().getId(), dni);
+
+				jsp = "menuCliente.jsp";
+				
+				
+				
+			}
+			
+		}
 		dispatcher (jsp, request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

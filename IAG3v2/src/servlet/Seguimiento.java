@@ -43,7 +43,31 @@ public class Seguimiento extends HttpServlet {
 			dispatcher (jsp, request, response);
 		
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String Volver = request.getParameter("Volver");
+		if(Volver!=null) {
+			if("Volver a menu".equals(request.getParameter("Volver"))){
+	//		if(request.getParameter("Volver").equals("Volver a menu")) {
+				jsp = "menuCliente.jsp";
+			
+				dispatcher (jsp, request, response);
+			
+			}
+		}
+		
+		String Login = request.getParameter("Login");
+
+		if(Login!=null) {
+		if(request.getParameter("Login").equals("Login")) {
+			jsp = "login.jsp";
+			
+			dispatcher (jsp, request, response);
+			
+		}
+		}
+		
+		
+		 
+	
 	}
 	
 	/**

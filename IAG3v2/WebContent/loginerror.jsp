@@ -11,27 +11,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Seguimiento</title>
+<title>Login error</title>
 </head>
 <body>
 <form action="Seguimiento">
 
-<% 
-	Integer clienteId = LoginUtils.getInstancia().getClienteBySession(request.getRequestedSessionId());
-%>
-	<%	List<String> prueba1 = SistemaLogistica.getInstancia().EnviarEstadoPedido(clienteId); %>
-	
-
-		<%for(String la : prueba1) {%>
-		<% if(la!=null) %>
-		<%out.println(la); %>
-			
-		<%} %>
-	
+Revisar: Usuario o Contraseña INCORRECTOS	
 
 <br>
-<a href=Seguimiento?action=Salir>Salir</a><br>
-<input type="submit" name= "Volver" value="Volver a menu">
+<input type="submit" name= "Login" value="Login">
 
 
 

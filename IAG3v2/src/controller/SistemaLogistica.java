@@ -129,6 +129,9 @@ public class SistemaLogistica {
 				notificacion.add(cliente.getNombre());
 				notificacion.add(cliente.getDireccion());
 				notificacion.add(convertirFechaString(o.getFecha()));
+				notificacion.add(o.getDetalle().getProducto().getNombre());
+				notificacion.add("-------------------------------");
+				
 				
 			}
 			

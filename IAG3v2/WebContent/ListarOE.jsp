@@ -59,7 +59,7 @@ Por favor seleccione el ID del repartidor para confeccionarle la Hoja de Ruta
 <br>
 <br>
 <br>
-<input type="submit" value="Seleccionar">
+<input type="submit" name= "Select" value="Seleccionar">
 
 
 </form>

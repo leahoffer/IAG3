@@ -10,8 +10,11 @@
 <h3>LOGISTICA SARASA</h3>
 
 <a href=ControladorWeb?action=LoginCliente>Login-Cliente</a><br>
-
+<br>
 <a href=ControladorWeb?action=Login>Login-Admin</a><br>
+
+<br>
+<a href=ControladorWeb?action=Registro>Registrarse</a><br>
 
 
 

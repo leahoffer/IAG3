@@ -44,7 +44,7 @@
 	
 
 <br>
-<input type="submit" value="Seleccionar">
+<input type="submit" name= "action" value="Seleccionar">
 
 
 

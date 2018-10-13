@@ -43,6 +43,8 @@ public class Estados extends HttpServlet {
 		
 		String jsp ="head.jsp";
 		
+		
+		
 	
 		dispatcher (jsp,request,response);
 		

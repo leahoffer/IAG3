@@ -47,12 +47,12 @@ public class loginServlet extends HttpServlet {
 				
 				LoginUtils.getInstancia().saveSession(request.getSession().getId(), clienteId);
 
-				response.sendRedirect("seguimiento.jsp");
+				response.sendRedirect("menuCliente.jsp");
 				return;			
 				}
 			
 			else {
-				response.sendRedirect("end.jsp");
+				response.sendRedirect("loginerror.jsp");
 				return;			
 				}
 		} catch (Exception e) {

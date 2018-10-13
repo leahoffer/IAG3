@@ -14,7 +14,7 @@
 <title>Mensaje de actualiación</title>
 </head>
 <body>
-<form action="Estados">
+<form action="ControladorAdmin">
 <% 
 	Integer clienteId = LoginUtils.getInstancia().getClienteBySession(request.getRequestedSessionId());
 %>
@@ -37,7 +37,7 @@ Se envió correctamente el estado de los pedidos del cliente:
 <br>
 <br>
 <br>
-<input type="submit" value="Volver">
+<input type="submit" name= "Volver" value="Volver">
 
 
 </form>
