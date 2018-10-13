@@ -43,7 +43,7 @@ Por favor seleccione el ID del repartidor para confeccionarle la Hoja de Ruta
 
 <% List<OrdenExpedicion> ordenes = (List<OrdenExpedicion>)SistemaLogistica.getInstancia().getPendientes(); %>
 <%for (OrdenExpedicion rep : ordenes){%>
-		<%out.println("DNI:   " + rep.getCliente().getClienteId() + "---Direccion Cliente:  " +rep.getCliente().getDireccion()+ "---Producto:  " +rep.getDetalle().getProducto().getNombre() + "----Cantidad " + rep.getDetalle().getCantidad()); %>
+		<%out.println("Numero de Orden:   " +rep.getNro()+ "----DNI:   " + rep.getCliente().getClienteId() + "---Direccion Cliente:  " +rep.getCliente().getDireccion()+ "---Producto:  " +rep.getDetalle().getProducto().getNombre() + "----Cantidad " + rep.getDetalle().getCantidad()); %>
 		<br>  
 		<%}%>
 		<br>

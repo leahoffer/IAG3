@@ -56,7 +56,7 @@ public class ControladorAdmin extends HttpServlet {
 			int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 			String producto = request.getParameter("producto");
 			SistemaLogistica.getInstancia().rutaPrivada(LoginUtils.getInstancia().getClienteBySession(request.getRequestedSessionId()), cantidad, producto);
-			jsp ="menu.jsp";
+			jsp ="menuCliente.jsp";
 		}
 		
 		
@@ -66,7 +66,7 @@ public class ControladorAdmin extends HttpServlet {
 		String volver = request.getParameter("Volver");
 		if(volver!=null) {
 			if ("Volver".equals(request.getParameter("Volver")))
-				jsp ="menuCliente.jsp";
+				jsp ="menu.jsp";
 		}
 		
 		

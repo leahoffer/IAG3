@@ -46,7 +46,6 @@ public class Seguimiento extends HttpServlet {
 		String Volver = request.getParameter("Volver");
 		if(Volver!=null) {
 			if("Volver a menu".equals(request.getParameter("Volver"))){
-	//		if(request.getParameter("Volver").equals("Volver a menu")) {
 				jsp = "menuCliente.jsp";
 			
 				dispatcher (jsp, request, response);
