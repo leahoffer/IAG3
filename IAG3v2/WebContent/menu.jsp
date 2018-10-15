@@ -9,11 +9,31 @@
 <title>LOGISTICA</title>
 </head>
 <body>
-<h3>LOGISTICA SARASA</h3>
+<h3><center> LOGISTICA GRUPO 3</h3></center>
 
-<a href=ControladorAdmin?action=ArmarRuta>Armar Hoja de Ruta</a><br>
+<br>
 
-<a href=ControladorAdmin?action=Estados>Actualizar estado pedidos</a><br>
+
+
+<fieldset> 
+<a href=ControladorAdmin?action=ArmarRuta>Armar Hoja de Ruta</a><br></fieldset>
+<br>
+<fieldset>
+<a href=ControladorAdmin?action=Estados>Actualizar estado pedidos</a><br></fieldset>
+<br>
+<fieldset>
+<a href=ControladorAdmin?action=Listar>Listar Hojas de Ruta</a><br></fieldset>
+<br>
+<fieldset>
+<a href=ControladorAdmin?action=Entrega>Entregar Pedidos</a><br>
+</fieldset>
+<br>
+<br>
+
+<fieldset>
+<center></a><a href=ControladorAdmin?action=Salir>Salir</a><br></center></fieldset>
+
+
 
 
 

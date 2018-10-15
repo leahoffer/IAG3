@@ -32,6 +32,7 @@ public class ControladorAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String jsp="default";
+		
 		if ("ArmarRuta".equals(request.getParameter("action"))){
 			jsp ="ListarOE.jsp";
 			
@@ -45,11 +46,29 @@ public class ControladorAdmin extends HttpServlet {
 			jsp ="seguimiento.jsp";
 		}
 		
+		if ("Entrega".equals(request.getParameter("action"))){
+			jsp ="entregarpedidos.jsp";
+		}
+		
 		
 		
 		if ("Envio".equals(request.getParameter("action"))){
 			jsp ="nuevoenvio.jsp";
 		}
+		
+		if ("Listar".equals(request.getParameter("action"))){
+			jsp ="ListaHojas.jsp";
+		}
+		
+		if ("Salir".equals(request.getParameter("action"))){
+			jsp ="end.jsp";
+		}
+		
+		if ("Volver".equals(request.getParameter("VolverAtras"))){
+			jsp ="menu.jsp";
+		}
+		
+		
 		
 		
 		if ("Enviar".equals(request.getParameter("action"))){

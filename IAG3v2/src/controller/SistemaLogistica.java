@@ -184,16 +184,24 @@ public class SistemaLogistica {
 			return (List<OrdenExpedicion>) OrdenExpedicionDAO.getInstance().findPendientes();
 		} 
 		
-		public void EntregarPedidos() {
+		public String EntregarPedidos(int dni) {
 		//	List<HojaRuta> hojas = new ArrayList<>();
 		//	hojas = HojaRutaDAO.getInstance().findAll();
+			
+			ClientePedido cli ;
+			cli = ClienteDAO.getInstance().findClienteByDNI(dni);
+			
 			List<OrdenExpedicion> oes = OrdenExpedicionDAO.getInstance().findDespachados();
 			
 			for(OrdenExpedicion oe : oes) {
+				if(oe.getCliente().getClienteId() == cli.getClienteId()){
 				oe.setEstado(EstadoOE.Entregado);
 				OrdenExpedicionDAO.getInstance().saveOrUpdate(oe);
+				}
 			}
 			
+			String a = "Actualizado";
+			return a;
 		}
 		
 		

@@ -35,7 +35,7 @@
 
 	<%for (OrdenExpedicion rep : ordenes){%>
 		
-		<option value=<%=rep.getNro()%>><%=rep.getCliente().getDni()%></option>
+		<option value=<%=rep.getCliente().getClienteId()%>><%=rep.getCliente().getDni()%></option>
 		
 	<%}%>
 
